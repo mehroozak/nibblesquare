@@ -1,0 +1,442 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* -------------------------------------------------------------------------
+   Nibble Square brand tokens — "Slate + Signal Teal"
+   Neutral slate surfaces, a single saturated teal (from the logo mark) for
+   action. All values are OKLCH so light/dark stay perceptually matched.
+   ------------------------------------------------------------------------- */
+
+:root {
+  --radius: 0.625rem;
+
+  /* Surfaces */
+  --background: oklch(1 0 0); /* #FFFFFF */
+  --foreground: oklch(0.19 0.028 260); /* near-black slate */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.19 0.028 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.19 0.028 260);
+
+  /* Action — signal teal, deepened from the logo's #3b9696 for AA text contrast */
+  --primary: oklch(0.52 0.08 195); /* ~#1E7777 */
+  --primary-foreground: oklch(0.985 0.005 195);
+
+  /* Secondary + muted — slate tints */
+  --secondary: oklch(0.968 0.007 254);
+  --secondary-foreground: oklch(0.28 0.03 260);
+  --muted: oklch(0.968 0.007 254); /* ~#F1F5F9 */
+  --muted-foreground: oklch(0.53 0.023 258);
+
+  /* Accent — teal-tinted surface, used for hovers and soft fills */
+  --accent: oklch(0.95 0.025 195); /* ~#DCF4F4 */
+  --accent-foreground: oklch(0.36 0.08 195); /* ~#00494A */
+
+  --destructive: oklch(0.58 0.223 27);
+  --destructive-foreground: oklch(0.985 0.005 260);
+
+  --border: oklch(0.923 0.011 255); /* ~#E2E8F0 */
+  --input: oklch(0.923 0.011 255);
+  --ring: oklch(0.52 0.08 195);
+
+  /* Charts — teal-led ramp, for future stat blocks / dashboards */
+  --chart-1: oklch(0.52 0.08 195);
+  --chart-2: oklch(0.68 0.14 233);
+  --chart-3: oklch(0.72 0.11 190);
+  --chart-4: oklch(0.62 0.17 285);
+  --chart-5: oklch(0.5 0.09 258);
+
+  --sidebar: oklch(0.985 0.003 258);
+  --sidebar-foreground: oklch(0.19 0.028 260);
+  --sidebar-primary: oklch(0.52 0.08 195);
+  --sidebar-primary-foreground: oklch(0.985 0.005 195);
+  --sidebar-accent: oklch(0.968 0.007 254);
+  --sidebar-accent-foreground: oklch(0.28 0.03 260);
+  --sidebar-border: oklch(0.923 0.011 255);
+  --sidebar-ring: oklch(0.52 0.08 195);
+}
+
+.dark {
+  /* Surfaces — very dark, slightly blue-cool rather than pure black */
+  --background: oklch(0.155 0.021 262); /* ~#080B12 */
+  --foreground: oklch(0.93 0.011 258); /* ~#E8EDF5 */
+  --card: oklch(0.192 0.022 262);
+  --card-foreground: oklch(0.93 0.011 258);
+  --popover: oklch(0.192 0.022 262);
+  --popover-foreground: oklch(0.93 0.011 258);
+
+  /* Action — lifted teal so it stays legible on dark */
+  --primary: oklch(0.7 0.1 195); /* ~#41B2B2 */
+  --primary-foreground: oklch(0.16 0.03 195);
+
+  --secondary: oklch(0.24 0.024 261);
+  --secondary-foreground: oklch(0.93 0.011 258);
+  --muted: oklch(0.225 0.023 261); /* ~#131A26 */
+  --muted-foreground: oklch(0.68 0.02 258);
+
+  --accent: oklch(0.28 0.048 195); /* ~#003030 */
+  --accent-foreground: oklch(0.9 0.04 195);
+
+  --destructive: oklch(0.66 0.19 25);
+  --destructive-foreground: oklch(0.97 0.01 25);
+
+  --border: oklch(0.3 0.028 260); /* ~#1E293B */
+  --input: oklch(0.32 0.028 260);
+  --ring: oklch(0.7 0.1 195);
+
+  --chart-1: oklch(0.7 0.1 195);
+  --chart-2: oklch(0.72 0.13 233);
+  --chart-3: oklch(0.78 0.1 190);
+  --chart-4: oklch(0.7 0.15 288);
+  --chart-5: oklch(0.6 0.08 258);
+
+  --sidebar: oklch(0.192 0.022 262);
+  --sidebar-foreground: oklch(0.93 0.011 258);
+  --sidebar-primary: oklch(0.7 0.1 195);
+  --sidebar-primary-foreground: oklch(0.16 0.03 195);
+  --sidebar-accent: oklch(0.24 0.024 261);
+  --sidebar-accent-foreground: oklch(0.93 0.011 258);
+  --sidebar-border: oklch(0.3 0.028 260);
+  --sidebar-ring: oklch(0.7 0.1 195);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Typography — wired to next/font variables in src/app/layout.tsx */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), ui-sans-serif,
+    system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  /* Accordion motion (used by src/components/ui/accordion.tsx) */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Headings use the display face by default. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight;
+  }
+
+  /* Respect users who ask for less motion. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Motion keyframes
+   Every animation below is decorative. The prefers-reduced-motion block in
+   @layer base collapses all of them to a single instant frame.
+   ------------------------------------------------------------------------- */
+
+@keyframes ns-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes ns-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(4%, -3%, 0) scale(1.08);
+  }
+  66% {
+    transform: translate3d(-3%, 3%, 0) scale(0.96);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes ns-draw {
+  from {
+    stroke-dashoffset: var(--ns-draw-length, 1000);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Distance is in SVG user units, supplied per-instance via --ns-scan-distance. */
+@keyframes ns-scan {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  12%,
+  88% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(var(--ns-scan-distance, 160px));
+    opacity: 0;
+  }
+}
+
+@keyframes ns-pulse-ring {
+  0% {
+    transform: scale(0.75);
+    opacity: 0.55;
+  }
+  70% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@keyframes ns-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes ns-rise {
+  from {
+    transform: scaleY(0.15);
+    opacity: 0.35;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes ns-grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes ns-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  55%,
+  100% {
+    opacity: 0.25;
+  }
+}
+
+@layer utilities {
+  /* Faint grid used behind hero / CTA sections. */
+  .bg-grid {
+    background-image: linear-gradient(
+        to right,
+        var(--border) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  /* Softer dot field — used inside mockup surfaces where the grid is too loud. */
+  .bg-dots {
+    background-image: radial-gradient(var(--border) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+
+  /* Slow teal wash behind the hero. Sits under .bg-grid, never over content. */
+  .bg-aurora::before,
+  .bg-aurora::after {
+    content: "";
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(72px);
+    pointer-events: none;
+  }
+
+  .bg-aurora::before {
+    inset: -18% 40% 45% -12%;
+    background: color-mix(in oklch, var(--primary) 30%, transparent);
+    animation: ns-drift 22s ease-in-out infinite;
+  }
+
+  .bg-aurora::after {
+    inset: -22% -14% 42% 42%;
+    background: color-mix(in oklch, var(--chart-2) 24%, transparent);
+    animation: ns-drift 28s ease-in-out infinite reverse;
+  }
+
+  /* Scroll reveal — the class is toggled by <Reveal>. */
+  .reveal {
+    opacity: 0;
+    transform: translate3d(var(--reveal-x, 0), var(--reveal-y, 18px), 0);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .reveal-in {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* Nothing has run JS yet — never leave content permanently invisible. */
+  @media (scripting: none) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Card hover: lift, tighten the shadow, warm the border toward brand teal. */
+  .card-lift {
+    transition:
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.3s ease;
+  }
+
+  .card-lift:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in oklch, var(--primary) 45%, var(--border));
+    box-shadow:
+      0 1px 2px color-mix(in oklch, var(--foreground) 6%, transparent),
+      0 12px 28px -12px color-mix(in oklch, var(--foreground) 22%, transparent);
+  }
+
+  .animate-float {
+    animation: ns-float 6s ease-in-out infinite;
+  }
+
+  .animate-scan {
+    animation: ns-scan 3.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+
+  .animate-pulse-ring {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: ns-pulse-ring 2.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  }
+
+  .animate-blink {
+    animation: ns-blink 1.8s steps(1, end) infinite;
+  }
+
+  /* `transform-box: fill-box` makes transform-origin resolve against the
+     element's own box rather than the SVG user-space origin. */
+  .animate-rise {
+    transform-box: fill-box;
+    transform-origin: bottom;
+    animation: ns-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-grow-x {
+    transform-box: fill-box;
+    transform-origin: left;
+    animation: ns-grow-x 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-draw {
+    stroke-dasharray: var(--ns-draw-length, 1000);
+    animation: ns-draw 2.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* Sweeping highlight for "live" surfaces inside the mockups. */
+  .animate-shimmer {
+    background-image: linear-gradient(
+      100deg,
+      transparent 20%,
+      color-mix(in oklch, var(--primary) 22%, transparent) 45%,
+      transparent 70%
+    );
+    background-size: 200% 100%;
+    animation: ns-shimmer 3.6s linear infinite;
+  }
+}
