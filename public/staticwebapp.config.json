@@ -1,9 +1,8 @@
 {
-  "navigationFallback": {
-    "rewrite": "/404.html",
-    "exclude": [
-      "/_next/*",
-      "/*.{svg,ico,png,jpg,jpeg,gif,webp,txt,xml,json}"
-    ]
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/404.html",
+      "statusCode": 404
+    }
   }
 }
